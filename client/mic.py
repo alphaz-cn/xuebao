@@ -213,10 +213,11 @@ class Mic(object):
         self.say(phrase)
     
     def say(self, phrase):
-        with tempfile.SpooledTemporaryFile() as f:
-            f.write(self.tts_engine.say(phrase))
-            f.seek(0)
-            self._output_device.play_fp(f)
+        self.tts_engine.say(phrase)
+        # with tempfile.SpooledTemporaryFile() as f:
+        #     f.write(self.tts_engine.say(phrase))
+        #     f.seek(0)
+        #     self._output_device.play_fp(f)
 
 
 if __name__ == "__main__":
