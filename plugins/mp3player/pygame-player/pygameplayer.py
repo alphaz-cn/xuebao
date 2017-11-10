@@ -21,7 +21,7 @@ class PygamePlayerPlugin(plugin.MP3PlayerPlugin):
         pygame.mixer.init()
         
         self._index = 0
-        self._volume = 20
+        self._volume = 50
         self._filenames = []
         self._is_playing = False
         
