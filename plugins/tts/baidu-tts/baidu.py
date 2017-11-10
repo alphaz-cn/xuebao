@@ -63,11 +63,11 @@ class BaiduTTSPlugin(plugin.TTSPlugin):
             json_result = r.json()
             raise BaiduNetworkError("%d - %s" % (json_result['err_no'], json_result['err_msg']))
         elif content_type.startswith('audio/mp3'):
-            self._logger.debug("BaiduTTS say mp3")
             with tempfile.NamedTemporaryFile(suffix='.mp3', delete=False) as fd:
                 for chunk in r.iter_content(1024):
                     fd.write(chunk)
                 tmpfile = fd.name
+            self._logger.debug("BaiduTTS say mp3 %s" % tmpfile)
             data = self.mp3_to_wave(tmpfile)
             # os.remove(tmpfile)
             return data
