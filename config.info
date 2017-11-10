@@ -20,8 +20,8 @@ PitchAdjustment = 40
 WordsPerMinute = 160
 
 [BaiduTTS]
-AppKey = SjW7r4y4nt7LnE7GgGbmqkFh
-SecretKey = c0885e2083f9856d5494b5617798d1b3
+AppKey = qg4haN8b2bGvFtCbBGqhrmZy
+SecretKey = 585d4eccb50d306c401d7df138bb02e7
 Language = zh
 Timeout = 2
 
