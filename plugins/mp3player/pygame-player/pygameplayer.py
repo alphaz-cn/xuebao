@@ -37,7 +37,7 @@ class PygamePlayerPlugin(plugin.MP3PlayerPlugin):
         
         self._folder = os.path.join(self._resource_path, folder)
         if not os.path.exists(self._folder):
-            raise Exception("invalid mp3 folder.>" + self._folder)
+            raise Exception("invalid mp3 folder.>" + str(self._folder))s
         
         for f in os.listdir(self._folder):
             if re.search(".(mp3|wav)$", f) != None:
