@@ -68,6 +68,7 @@ class BaiduTTSPlugin(plugin.TTSPlugin):
                     fd.write(chunk)
                 tmpfile = fd.name
             self._logger.debug("BaiduTTS say mp3 %s" % tmpfile)
-            data = self.mp3_to_wave(tmpfile)
+            data = self.play_mp3(tmpfile)
+            # data = self.mp3_to_wave(tmpfile)
             # os.remove(tmpfile)
             return data

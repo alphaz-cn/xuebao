@@ -128,3 +128,14 @@ class TTSPlugin(GenericPlugin):
             f.seek(0)
             data = f.read()
         return data
+        
+    def play_mp3(self, filename, remove=False):
+        cmd = ['play', str(filename)]
+        self._logger.debug('Executing %s', ' '.join([pipes.quote(arg)
+                                                     for arg in cmd]))
+        with tempfile.TemporaryFile() as f:
+            subprocess.call(cmd, stdout=f, stderr=f)
+            f.seek(0)
+            output = f.read()
+            if output:
+                self._logger.debug("Output was: '%s'", output)
