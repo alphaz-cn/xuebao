@@ -6,6 +6,7 @@ for more detail
 import os
 import requests
 import tempfile
+import logging
 from client import plugin
 
 class BaiduNetworkError(Exception):
