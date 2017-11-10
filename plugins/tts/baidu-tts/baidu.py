@@ -20,7 +20,7 @@ class BaiduPhraseError(Exception):
 class BaiduTTSPlugin(plugin.TTSPlugin):
     def __init__(self, *args, **kwargs):
         plugin.TTSPlugin.__init__(self, *args, **kwargs)
-        
+        self._logger = logging.getLogger(__name__)
         self._app_key = self.profile.get("BaiduTTS", "AppKey", None)
         if not self._app_key:
             raise BaiduParamError("empty baidu app key")
@@ -62,10 +62,11 @@ class BaiduTTSPlugin(plugin.TTSPlugin):
             json_result = r.json()
             raise BaiduNetworkError("%d - %s" % (json_result['err_no'], json_result['err_msg']))
         elif content_type.startswith('audio/mp3'):
+            self._logger.debug("BaiduTTS say mp3")
             with tempfile.NamedTemporaryFile(suffix='.mp3', delete=False) as fd:
                 for chunk in r.iter_content(1024):
                     fd.write(chunk)
                 tmpfile = fd.name
             data = self.mp3_to_wave(tmpfile)
-            os.remove(tmpfile)
+            # os.remove(tmpfile)
             return data
