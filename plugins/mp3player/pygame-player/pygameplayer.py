@@ -95,7 +95,10 @@ class PygamePlayerPlugin(plugin.MP3PlayerPlugin):
         self.set_volumn(self._volume)
     
     def set_volumn(self, volumn):
-        pygame.mixer.music.set_volume(volumn)
+        dv = volumn/10
+        for i in xrange(1,10):
+            pygame.mixer.music.set_volume(dv * i)
+            time.sleep(0.2)
     
     def play(self):
         if not pygame.mixer.get_init():
