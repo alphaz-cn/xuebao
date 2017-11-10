@@ -37,7 +37,7 @@ class PygamePlayerPlugin(plugin.MP3PlayerPlugin):
         
         self._folder = os.path.join(self._resource_path, folder)
         if not os.path.exists(self._folder):
-            raise Exception("invalid mp3 folder.>" + str(self._folder))
+            raise Exception("invalid mp3 folder.>%s" % self._folder)
         
         for f in os.listdir(self._folder):
             if re.search(".(mp3|wav)$", f) != None:
@@ -109,6 +109,7 @@ class PygamePlayerPlugin(plugin.MP3PlayerPlugin):
         
         curFile = self._filenames[self._index]
         self._logger.debug("play file %s" % curFile)
+        pygame.mixer.music.set_volume(0)
         pygame.mixer.music.load(os.path.join(self._folder, curFile))
         pygame.mixer.music.play(0)
         self.set_volumn(self._volume)
